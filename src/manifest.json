@@ -29,6 +29,7 @@
 			"scripts/pubsub.min.js",
 			"scripts/highlight.min.js",
 			"scripts/kindling.common.js",
+			"scripts/kindling.customsounds.js",
 			"scripts/kindling.emoji.js",
 			"scripts/kindling.sounds.js",
 			"scripts/kindling.highlight.js",
