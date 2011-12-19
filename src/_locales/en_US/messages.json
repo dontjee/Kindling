@@ -47,6 +47,9 @@
 	"soundAndEmojiMenus":{
 		"message": "Emoticon and sound menus"
 	},
+	"colorNames":{
+		"message": "Color usernames"
+	},
 	"iconTooltip":{
 		"message": "Click to configure Kindling..."
 	},

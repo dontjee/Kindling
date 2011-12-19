@@ -34,6 +34,7 @@
 			"scripts/kindling.sounds.js",
 			"scripts/kindling.highlight.js",
 			"scripts/kindling.messagefilter.js",
+			"scripts/kindling.colorednames.js",
 			"scripts/kindling.notificationpublisher.js",
 			"scripts/kindling.contentscript.js"
 		]
