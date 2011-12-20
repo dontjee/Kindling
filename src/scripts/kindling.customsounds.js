@@ -50,14 +50,19 @@
 		
 		
 		// Need to fix issue where if we are at the top of the log, if there is a CARDTAG there, it plays again
+		// HACK!! current fix is that the second call is going to be long, so we only consider it if it is
+		// shorter than 250 characters
+		
+		
 		//if(messageBody == COMMAND_CARD_TAG) {
-		if(messageBody.indexOf(COMMAND_CARD_TAG) === 0 ) {
+		//alert(messageBody);
+		//alert(messageBody.length);
+		if( messageBody.length < 250 && messageBody.indexOf(COMMAND_CARD_TAG) === 0 ) {
 			var randomNum = Math.floor(Math.random()*CARD_TAG_SOUNDS.length);
 			var audioObj = document.getElementById(RANDOM_ID_DISTINGUISHER + randomNum);
-				//document.getElementById(RANDOM_ID_DISTINGUISHER + randomNum).play();
-							console.log(audioObj);
-			console.log(audioObj.source);
-				audioObj.play();
+            //console.log(audioObj);
+			//console.log(audioObj.source);
+			audioObj.play();
 			return;
 		}
 		
@@ -66,9 +71,8 @@
 			if (messageBody.toLowerCase() == (COMMAND_CUSTOM_PLAY + ' ' + customSoundKey).toLowerCase() ) {
 				$(message).find('div.body').html(CUSTOM_SOUNDS[customSoundKey].html);
 				var audioObj = document.getElementById(AUDIO_ID_DESTINGUISHER + customSoundKey);
-				//document.getElementById(AUDIO_ID_DESTINGUISHER + customSoundKey).play();
-							console.log(audioObj);
-			console.log(audioObj.source);
+				//console.log(audioObj);
+				//console.log(audioObj.source);
 				audioObj.play();
 				break;
 			}
