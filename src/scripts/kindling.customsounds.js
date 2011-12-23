@@ -36,8 +36,18 @@
 			</audio>');
 		}
 	};
+	
+	var playSoundIfAllowed = function (sound) {
+		var muteButtonText = $('#toggle_sounds_link img').attr('alt');
+		console.log(muteButtonText);
+		
+		if ( muteButtonText.indexOf('on') !== -1 ){
+			sound.play();
+		}
+	};
 
 	var playCustomSound = function (e, options, username, message) {
+		
 		if (!message) {
 			return;
 		}
@@ -47,8 +57,7 @@
 		if (!messageBody) {
 			return;
 		}
-		
-		
+				
 		// Need to fix issue where if we are at the top of the log, if there is a CARDTAG there, it plays again
 		// HACK!! current fix is that the second call is going to be long, so we only consider it if it is
 		// shorter than 250 characters
@@ -62,7 +71,7 @@
 			var audioObj = document.getElementById(RANDOM_ID_DISTINGUISHER + randomNum);
             //console.log(audioObj);
 			//console.log(audioObj.source);
-			audioObj.play();
+			playSoundIfAllowed(audioObj);
 			return;
 		}
 		
@@ -73,7 +82,7 @@
 				var audioObj = document.getElementById(AUDIO_ID_DESTINGUISHER + customSoundKey);
 				//console.log(audioObj);
 				//console.log(audioObj.source);
-				audioObj.play();
+				playSoundIfAllowed(audioObj);
 				break;
 			}
 		}
