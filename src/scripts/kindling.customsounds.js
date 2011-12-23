@@ -14,7 +14,10 @@
 	var COMMAND_CUSTOM_PLAY = '/customplay';
 	
 	var CARD_TAG_SOUNDS = [
-		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/a1525eda-d608-43e5-a9dd-05b4543360a6/MuchRejoicing.mp3'
+		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/a1525eda-d608-43e5-a9dd-05b4543360a6/MuchRejoicing.mp3',
+		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/d2b270f0-115d-4411-b179-f1a36477e7c2/Applause.mp3',
+		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/3a727f46-360e-4dba-81b9-e2bfa6829d7f/SweetBerry.mp3',
+		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/adec6342-3468-4b95-8658-8d1a4e04d777/MyBoy.mp3'
 	];
 	var COMMAND_CARD_TAG = '#CARDTAG'
 	var CARD_TAG_SOUND_LIST = [];
@@ -45,6 +48,28 @@
 			sound.play();
 		}
 	};
+	
+	var playRandomCardTagSound = function () {
+		var randomNum = Math.floor(Math.random()*CARD_TAG_SOUNDS.length);
+		var audioObj = document.getElementById(RANDOM_ID_DISTINGUISHER + randomNum);
+		
+		playSoundIfAllowed(audioObj);
+	};
+	
+	var playSelectedCustomSound = function ( messageCommand, pageBody ) {
+		var customSoundKey;
+		for (customSoundKey in CUSTOM_SOUNDS) {
+			var currentCustomCommand = (COMMAND_CUSTOM_PLAY + ' ' + customSoundKey).toLowerCase();
+			
+			if (messageCommand == currentCustomCommand ) {
+				pageBody.html(CUSTOM_SOUNDS[customSoundKey].html);
+				var audioObj = document.getElementById(AUDIO_ID_DESTINGUISHER + customSoundKey);
+				
+				playSoundIfAllowed(audioObj);
+				break;
+			}
+		}
+	};
 
 	var playCustomSound = function (e, options, username, message) {
 		
@@ -62,29 +87,14 @@
 		// HACK!! current fix is that the second call is going to be long, so we only consider it if it is
 		// shorter than 250 characters
 		
-		
-		//if(messageBody == COMMAND_CARD_TAG) {
 		//alert(messageBody);
 		//alert(messageBody.length);
 		if( messageBody.length < 250 && messageBody.indexOf(COMMAND_CARD_TAG) === 0 ) {
-			var randomNum = Math.floor(Math.random()*CARD_TAG_SOUNDS.length);
-			var audioObj = document.getElementById(RANDOM_ID_DISTINGUISHER + randomNum);
-            //console.log(audioObj);
-			//console.log(audioObj.source);
-			playSoundIfAllowed(audioObj);
-			return;
+			playRandomCardTagSound();
 		}
-		
-		var customSoundKey;
-		for (customSoundKey in CUSTOM_SOUNDS) {
-			if (messageBody.toLowerCase() == (COMMAND_CUSTOM_PLAY + ' ' + customSoundKey).toLowerCase() ) {
-				$(message).find('div.body').html(CUSTOM_SOUNDS[customSoundKey].html);
-				var audioObj = document.getElementById(AUDIO_ID_DESTINGUISHER + customSoundKey);
-				//console.log(audioObj);
-				//console.log(audioObj.source);
-				playSoundIfAllowed(audioObj);
-				break;
-			}
+		else if ( messageBody.toLowerCase().indexOf(COMMAND_CUSTOM_PLAY) === 0 ){
+			var pageBody = $(message).find('div.body');
+			playSelectedCustomSound( messageBody.toLowerCase(), pageBody );
 		}
 	};
 
