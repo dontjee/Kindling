@@ -1,23 +1,19 @@
 (function () {
 	'use strict';
-
+	
 	// Initialize all the sound lists and their commands
 	var CUSTOM_ID_DESTINGUISHER = 'chromefire_custom_sound_';
 	var COMMAND_CUSTOM_PLAY = '/customplay';
 	var CUSTOM_SOUNDS = {
-		'stage': { html: '<img alt="Sound" height="12" src="/images/sound.png?1323390852" width="12" style="opacity:0.25;"/> is doing it stage!'
-				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/91023ea2-3f46-4999-b056-419560ad268c/DoItStage.mp3' },
-				
-		'drumroll': { html: '<img alt="Sound" height="12" src="/images/sound.png?1323390852" width="12" style="opacity:0.25;"/> is building anticipation'
-				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/c3aea064-28d2-49b5-be99-850c223fb8d0/drumroll.mp3' },
-				
-		'gocloudteam': { html: '<img alt="Sound" height="12" src="/images/sound.png?1323390852" width="12" style="opacity:0.25;"/> is encouraging the team!'
-				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/df99264e-ee30-4f53-ac05-542a16a3d0e9/GoGoCloud.mp3' },
-				
-		'crossfingers': { html: '<img alt="Sound" height="12" src="/images/sound.png?1323390852" width="12" style="opacity:0.25;"/> is crossing their fingers . . .'
-				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/d9da30dc-24f0-4c37-bb04-c23f8f9fb0f8/HoldOnToYourButts.mp3'},
-				
-		'shipitgood': {html: '<img alt="Sound" height="12" src="/images/sound.png?1323390852" width="12" style="opacity:0.25;"/> wants to ship properly!'
+		'stage': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> is doing it stage!'
+				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/91023ea2-3f46-4999-b056-419560ad268c/DoItStage.mp3' },				
+		'drumroll': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> is building anticipation'
+				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/c3aea064-28d2-49b5-be99-850c223fb8d0/drumroll.mp3' },				
+		'gocloudteam': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> is encouraging the team!'
+				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/df99264e-ee30-4f53-ac05-542a16a3d0e9/GoGoCloud.mp3' },				
+		'crossfingers': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> is crossing their fingers . . .'
+				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/d9da30dc-24f0-4c37-bb04-c23f8f9fb0f8/HoldOnToYourButts.mp3'},				
+		'shipitgood': {html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> wants to ship properly!'
 				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/ea10c486-6c04-4178-acc2-77fe8295fce8/ShipItGood.mp3'}
 	};
 	
@@ -56,11 +52,12 @@
 		
 		appendSoundsToPage( CARDTAG_ID_DISTINGUISHER, CARD_TAG_SOUNDS );
 		appendSoundsToPage( UNDERWATERTAG_ID_DISTINGUISHER, UNDERWATER_TAG_SOUNDS );
+		
+		setTimeout( function() { setAllCustomPlayCustomText($('#chat')); }, 10);
 	};
 	
 	var playSoundIfAllowed = function (sound) {
 		var muteButtonText = $('#toggle_sounds_link img').attr('alt');
-		console.log(muteButtonText);
 		
 		if ( muteButtonText.indexOf('on') !== -1 ){
 			sound.play();
@@ -94,8 +91,8 @@
 		}
 	};
 
-	var playCustomSound = function (e, options, username, message) {
-		
+
+	var playCustomSound = function (e, options, username, message) {		
 		if (!message) {
 			return;
 		}
@@ -129,17 +126,18 @@
 		setAllCustomPlayCustomText( message );
 	};
 	
-	var setAllCustomPlayCustomText = function ( message ) {
-	
+	var setAllCustomPlayCustomText = function ( message ) {		
 		var pageBody = $(message).find('div.body');
 		$.each(pageBody, function (index, value) {
 			var bodyText = $(value).text();			
-			
 			var customSoundKey;
 			for (customSoundKey in CUSTOM_SOUNDS) {
 				var currentCustomCommand = (COMMAND_CUSTOM_PLAY + ' ' + customSoundKey).toLowerCase();
+				
 				if (bodyText == currentCustomCommand ) {	
 					$(value).html(CUSTOM_SOUNDS[customSoundKey].html);
+					$(value).parents('.text_message').removeClass('text_message').addClass('sound_message');					
+					$(value).find('a').click(function(){ playSelectedCustomSound(bodyText); return false;});
 				}
 			}
 		});
