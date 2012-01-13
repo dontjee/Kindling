@@ -20,7 +20,15 @@ kindling.module(function () {
 		'Yeeeaah!': '/play yeah',
 		'Vuvuzela': '/play vuvuzela'
 	};
-
+	
+	var onOptionsChanged = function (e, options) {
+		if (options.soundAndEmojiMenus === 'true') {
+			displayMenu();
+		} else {
+			$('#' + MENU_ID).remove();
+		}
+	};
+		
 	return {
 		init: function () {
 			$('#chat_controls').append('<div id="soundButton-wrapper" class="tooltip"><img id="soundButton" title="' + chrome.i18n.getMessage('soundMenuTooltip') + '" src="' + chrome.extension.getURL("img/sound.gif") + '" width="18" height="15" /><span id="soundContainer" class="tooltip-inner"></span></div>');
@@ -47,6 +55,7 @@ kindling.module(function () {
 				document.getElementById('send').click();
 				input.value = oldValue;
 			});
+			$.subscribe('optionsChanged', onOptionsChanged);
 		}
 	};
 }());
