@@ -29,7 +29,16 @@
 	var UNDERWATERTAG_ID_DISTINGUISHER = 'chromefire_underwater_sound_';
 	var COMMAND_UNDERWATER_TAG = '#UNDERWATER';
 	var UNDERWATER_TAG_SOUNDS = [
-		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/54f263bc-ce7f-460e-9856-a57ec7698fcc/Underwater.mp3'
+		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/54f263bc-ce7f-460e-9856-a57ec7698fcc/Underwater.mp3',
+		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/79b14fa6-3373-428e-a91b-b39abd118a97/Drowning.mp3'
+	];
+	
+	var BROKEN_BUILD_ID_DISTINGUISHER = 'chromefire_broken_build_sound_';
+	var BROKEN_BUILD_REG_EX = '^TeamBuild:\\s*([A-Za-z]+).*Failed$';
+	var BROKEN_BUILD_SOUNDS = [
+		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/d73ce4c6-6838-430c-aea8-a0c199f20b2a/NoWammy.mp3',
+		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/e97249bc-ed2b-4242-912b-feb6176c9020/BooHiss.mp3',
+		'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/087dbf9a-7316-4da1-b813-d6244789a430/StuffBreaking.mp3'
 	];
 	// End sound initialize
 	
@@ -52,6 +61,7 @@
 		
 		appendSoundsToPage( CARDTAG_ID_DISTINGUISHER, CARD_TAG_SOUNDS );
 		appendSoundsToPage( UNDERWATERTAG_ID_DISTINGUISHER, UNDERWATER_TAG_SOUNDS );
+		appendSoundsToPage( BROKEN_BUILD_ID_DISTINGUISHER, BROKEN_BUILD_SOUNDS );
 		
 		setTimeout( function() { setAllCustomPlayCustomText($('#chat')); }, 10);
 	};
@@ -62,6 +72,13 @@
 		if ( muteButtonText.indexOf('on') !== -1 ){
 			sound.play();
 		}
+	};
+	
+	var playRandomBuildFailSound = function () {
+		var randomNum = Math.floor(Math.random()*BROKEN_BUILD_SOUNDS.length);
+		var audioObj = document.getElementById(BROKEN_BUILD_ID_DISTINGUISHER + randomNum);
+		
+		playSoundIfAllowed(audioObj);
 	};
 	
 	var playRandomCardTagSound = function () {
@@ -106,10 +123,18 @@
 		//console.log('Words');
 		//alert(messageBody);
 				
+		var brokenBuildRegEx = new RegExp( BROKEN_BUILD_REG_EX );
+		var regExResult = brokenBuildRegEx.exec(messageBody);
+		if (regExResult != null) {
+		// TODO:
+		// Could grab regExResult[1] if I want the team name of the build that failed
+		// to do something specific with that instead of only a generic version
+			playRandomBuildFailSound();
+		}
+		
 		// Need to fix issue where if we are at the top of the log, if there is a CARDTAG/UNDERWATERTAG there, it plays again
 		// HACK!! current fix is that the second call is going to be long, so we only consider it if it is
 		// shorter than 250 characters
-
 
 		if ( messageBody.toLowerCase().indexOf(COMMAND_CUSTOM_PLAY) === 0 ){
 			playSelectedCustomSound( messageBody.toLowerCase() );
