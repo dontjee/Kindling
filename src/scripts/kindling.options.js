@@ -49,9 +49,11 @@ kindling.module(function () {
 		}
 
 		if ($parent[0].id === 'notifications' && value !== (localStorage.notifications === 'true')) {
-			$('#disableNotificationsWhenInFocus,#filterNotifications,#showAvatarsInNotifications,#dismissDiv,#customFilterDiv').slideToggle(300, 'easeInOutExpo');
+			$('#disableNotificationsWhenInFocus,#filterNotifications,#showAvatarsInNotifications,#dismissDiv,#customFilterDiv').slideToggle(300);
 		} else if ($parent[0].id === 'autoDismiss' && value !== (localStorage.autoDismiss === 'true')) {
-			$('#timeoutDiv').slideToggle(300, 'easeInOutExpo');
+			$('#timeoutDiv').slideToggle(200);
+		} else if ($parent[0].id === 'filterNotificationsByCustom' && value !== (localStorage.filterNotificationsByCustom === 'true')) {
+			$('#customFilterValueDiv').slideToggle(200);
 		}
 	}
 
@@ -80,6 +82,10 @@ kindling.module(function () {
 		var customFilterValue = document.getElementById('customFilterValue');
 		saveOption(customFilterValue.id, customFilterValue.value);
 		onOptionChanged();
+	}
+	
+	function onCustomFilterOptionChanged() {
+		$('#customFilterValueDiv').Toggle();
 	}
 
 	function onToggle(e) {
@@ -111,6 +117,9 @@ kindling.module(function () {
 		}
 		if (localStorage.autoDismiss === 'false') {
 			$('#timeoutDiv').hide();
+		}
+		if( localStorage.filterNotificationsByCustom === 'false') {
+			$('#customFilterValueDiv').hide();
 		}
 	}
 
