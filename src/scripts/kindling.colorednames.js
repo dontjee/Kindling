@@ -27,7 +27,7 @@ kindling.module(function () {
     }
 	
 	var colorAllUsernames = function (e, options) {
-		$('td.person span').each(function(i, elem) {
+		$('td.person span,.inline-author').each(function(i, elem) {
 				elem.style.color = getUsernameColor(elem.innerHTML, options);
 		});
 	};
