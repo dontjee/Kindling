@@ -49,9 +49,9 @@ kindling.module(function () {
 		}
 
 		if ($parent[0].id === 'notifications' && value !== (localStorage.notifications === 'true')) {
-			$('#disableNotificationsWhenInFocus,#filterNotifications,#showAvatarsInNotifications,#dismissDiv').slideToggle(500, 'easeInOutExpo');
+			$('#disableNotificationsWhenInFocus,#filterNotifications,#showAvatarsInNotifications,#dismissDiv,#customFilterDiv').slideToggle(300, 'easeInOutExpo');
 		} else if ($parent[0].id === 'autoDismiss' && value !== (localStorage.autoDismiss === 'true')) {
-			$('#timeoutDiv').slideToggle(500, 'easeInOutExpo');
+			$('#timeoutDiv').slideToggle(300, 'easeInOutExpo');
 		}
 	}
 
@@ -107,7 +107,7 @@ kindling.module(function () {
 		}
 
 		if (localStorage.notifications === 'false') {
-		    $('#disableNotificationsWhenInFocus,#filterNotifications,#showAvatarsInNotifications,#dismissDiv').hide();
+		    $('#disableNotificationsWhenInFocus,#filterNotifications,#showAvatarsInNotifications,#dismissDiv,#customFilterDiv').hide();
 		}
 		if (localStorage.autoDismiss === 'false') {
 			$('#timeoutDiv').hide();
