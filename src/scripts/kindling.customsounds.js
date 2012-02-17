@@ -135,15 +135,15 @@
 		// Need to fix issue where if we are at the top of the log, if there is a CARDTAG/UNDERWATERTAG there, it plays again
 		// HACK!! current fix is that the second call is going to be long, so we only consider it if it is
 		// shorter than 250 characters
-
+		// Also requires doing the upper and lower case checks
 		if ( messageBody.toLowerCase().indexOf(COMMAND_CUSTOM_PLAY) === 0 ){
 			playSelectedCustomSound( messageBody.toLowerCase() );
 		}
 		else if( messageBody.length < 250 ){
-			if ( messageBody.indexOf(COMMAND_CARD_TAG) === 0 ) {
+			if ( messageBody.indexOf(COMMAND_CARD_TAG) === 0 || messageBody.indexOf(COMMAND_CARD_TAG.toLowerCase()) === 0 ) {
 				playRandomCardTagSound();
 			}
-			else if ( messageBody.indexOf(COMMAND_UNDERWATER_TAG) === 0 ) {
+			else if ( messageBody.indexOf(COMMAND_UNDERWATER_TAG) === 0 || messageBody.indexOf(COMMAND_UNDERWATER_TAG.toLowerCase()) === 0 ) {
 				playRandomUnderwaterTagSound();
 			}
 		}
