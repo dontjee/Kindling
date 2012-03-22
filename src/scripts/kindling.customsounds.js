@@ -16,7 +16,7 @@
 		'shipitgood': {html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> wants to ship properly!'
 				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/ea10c486-6c04-4178-acc2-77fe8295fce8/ShipItGood.mp3'},
 		'yeahboi': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> is pumped!'
-				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/46522cf2-8aa8-4eac-a5e6-aa1ffaebc39b/YeaBoi!.mp3' },		
+				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/71beda65-5ed7-490e-a623-06c109a8189c/YeaBoi!.mp3' },		
 		'ohmygod': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> is flabbergasted!'
 				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/e170db1a-b5f9-46a9-a818-71615f1ede31/OhMyGod.mp3' },
 		'nicecatch': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> dissapproves.'
