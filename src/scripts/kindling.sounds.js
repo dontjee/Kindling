@@ -11,8 +11,10 @@ kindling.module(function () {
 		'Drama': '/play drama',
 		'Go Cloud Team!': '/customplay gocloudteam',
 		'Great job': '/play greatjob',
+		'Nice Catch': '/customplay nicecatch',
 		'Nyan cat': '/play nyan',
 		'Oh my': '/play ohmy',
+		'OMG': '/customplay ohmygod',
 		'Oh yeah': '/play ohyeah',
 		'Push it': '/play pushit',
 		'Rimshot': '/play rimshot',
@@ -21,6 +23,7 @@ kindling.module(function () {
 		'Ship It Good!': '/customplay shipitgood',
 		'Ta-da!' : '/play tada',
 		'The More You Know': '/play tmyk',
+		'YeahBoi!' : '/customplay yeahboi',
 		'Yeeeaaah!': '/play yeah',
 		'Vuvuzela': '/play vuvuzela'
 	};

@@ -14,7 +14,13 @@
 		'crossfingers': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> is crossing their fingers . . .'
 				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/d9da30dc-24f0-4c37-bb04-c23f8f9fb0f8/HoldOnToYourButts.mp3'},				
 		'shipitgood': {html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> wants to ship properly!'
-				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/ea10c486-6c04-4178-acc2-77fe8295fce8/ShipItGood.mp3'}
+				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/ea10c486-6c04-4178-acc2-77fe8295fce8/ShipItGood.mp3'},
+		'yeahboi': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> is pumped!'
+				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/46522cf2-8aa8-4eac-a5e6-aa1ffaebc39b/YeaBoi!.mp3' },		
+		'ohmygod': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> is flabbergasted!'
+				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/e170db1a-b5f9-46a9-a818-71615f1ede31/OhMyGod.mp3' },
+		'nicecatch': { html: '<a href="#"><img alt="Sound" height="12" src="/images/sound.png?1325201509" width="12" style="opacity:0.25;"/></a> dissapproves.'
+				,  url: 'http://content.screencast.com/users/S.Schmerer/folders/Chromefire/media/0aac7710-cdb8-46fb-89d3-c7ca78056cea/NiceCatch.mp3' }	
 	};
 	
 	var CARDTAG_ID_DISTINGUISHER = 'chromefire_cardtag_sound_';
@@ -86,6 +92,24 @@
 		var audioObj = document.getElementById(CARDTAG_ID_DISTINGUISHER + randomNum);
 		
 		playSoundIfAllowed(audioObj);
+		
+		//var ss = SpreadsheetApp.openById("0AhJAvZCqoE6cdDZ0dnRMVlVjUjNqbVA4RThETmFLZFE");
+		//var sheet = ss.getSheets()[0];
+  
+		//Get the range of cells that store employee data.
+//		var employeeDataRange = ss.getRangeByName("employeeData");
+
+		//For every row of employee data, generate an employee object.
+	//	var employeeObjects = getRowsData(sheet, employeeDataRange);
+
+	//	var thirdEmployee = employeeObjects[2];
+
+	//	var stringToDisplay = "The third row is: " + thirdEmployee.firstName + " " + thirdEmployee.lastName;
+	//	stringToDisplay += " (id #" + thirdEmployee.employeeId + ") working in the ";
+	//	stringToDisplay += thirdEmployee.department + " department and with phone number ";
+	//	stringToDisplay += thirdEmployee.phoneNumber;
+		
+	//	console.log(stringToDisplay);
 	};
 	
 	var playRandomUnderwaterTagSound = function () {
