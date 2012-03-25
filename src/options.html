@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{options}</title>
 	<link rel="stylesheet" media="screen" href="css/coda-slider.css" />
 	<link rel="stylesheet" media="screen" href="css/options.css" />
 	<link rel="stylesheet" media="screen and (max-width:425px)" href="css/options-small.css" />
@@ -25,7 +24,7 @@
 			<div id="coda-slider" class="coda-slider">
 				<div class="panel">
 					<div class="panel-wrapper">
-					   <p class="field switch" id="notifications">
+					   <p class="field switch" id="notifications" data-dependents="#disableNotificationsWhenInFocus,#filterNotifications,#showAvatarsInNotifications,#dismissDiv,#customFilterDiv">
 							<label class="cb-enable"><span>{on}</span></label>
 							<label class="cb-disable selected"><span>{off}</span></label>
 							<label for="notifications" class="description">{notifications}</label>
@@ -41,7 +40,7 @@
 							<label for="filterNotifications" class="description">{filterNotifications}</label>
 						</p>
 						<div id="customFilterDiv">
-							<p class="field switch" id="filterNotificationsByCustom">
+							<p class="field switch" id="filterNotificationsByCustom" data-dependents="#customFilterValueDiv">
 								<label class="cb-enable"><span>{on}</span></label>
 								<label class="cb-disable selected"><span>{off}</span></label>
 								<label for="filterNotificationsByCustom" class="description">{filterNotificationsByCustom}</label>
@@ -59,7 +58,7 @@
 							<label for="showAvatarsInNotifications" class="description">{showAvatarsInNotifications}</label>
 						</p>
 						<div id="dismissDiv">
-							<p class="field switch" id="autoDismiss">
+							<p class="field switch" id="autoDismiss" data-dependents="#timeoutDiv">
 								<label class="cb-enable"><span>{on}</span></label>
 								<label class="cb-disable selected"><span>{off}</span></label>
 								<label for="autoDismiss" class="description">{autoDismiss}</label>
@@ -69,7 +68,7 @@
 									<input id="notificationTimeout" type="range" min="1000" max="15000" step="1000" /><br />
 									<span id="rangeTooltip"></span>
 								</div>
-								<label for="notificationTimeout" style="vertical-align: top; margin-left: 5px;">{autoDismiss}</label>
+								<label for="notificationTimeout" style="vertical-align: top; margin-left: 5px;">{notificationTimeout}</label>
 							</div>
 						</div>
 					</div>
@@ -105,22 +104,41 @@
 							<label class="cb-disable selected"><span>{off}</span></label>
 							<label for="colorNames" class="description">{colorNames}</label><span class="asterisk">*</span>
 						</p>
-						<p class="field switch" id="showAvatarsInChat">
-							<label class="cb-enable"><span>{on}</span></label>
-							<label class="cb-disable selected"><span>{off}</span></label>
-							<label for="showAvatarsInChat" class="description">{showAvatarsInChat}</label><span class="asterisk">*</span>
-						</p>
 						<p class="field switch" id="soundAndEmojiMenus">
 							<label class="cb-enable"><span>{on}</span></label>
 							<label class="cb-disable selected"><span>{off}</span></label>
 							<label for="soundAndEmojiMenus" class="description">{soundAndEmojiMenus}</label>
 						</p>
-						<p class="field switch" id="faviconCounter">
+						<p class="field switch" id="showAvatarsInChat" data-dependents="#useLargeAvatars">
 							<label class="cb-enable"><span>{on}</span></label>
 							<label class="cb-disable selected"><span>{off}</span></label>
-							<label for="faviconCounter" class="description">{faviconCounter}</label><span class="asterisk">*</span>
+							<label for="showAvatarsInChat" class="description">{showAvatarsInChat}</label><span class="asterisk">*</span>
 						</p>
-						<div style="text-align:right;"><span class="asterisk">*</span><span class="label red">beta</span></div>
+						<p class="field switch" id="useLargeAvatars">
+							<label class="cb-enable"><span>{on}</span></label>
+							<label class="cb-disable selected"><span>{off}</span></label>
+							<label for="useLargeAvatars" class="description">{useLargeAvatars}</label>
+						</p>
+						<p class="field switch" id="useDifferentTheme" data-dependents="#themeColor">
+							<label class="cb-enable"><span>{on}</span></label>
+							<label class="cb-disable selected"><span>{off}</span></label>
+							<label for="useDifferentTheme" class="description">{useDifferentTheme}</label>
+						</p>
+						<div id="themeColor">
+							<input type="radio" name="color" title="red" style="background-color:#900"/>
+							<input type="radio" name="color" title="pink" style="background-color:#F99"/>
+							<input type="radio" name="color" title="purple" style="background-color:#873E8F"/>
+							<input type="radio" name="color" title="blue" style="background-color:#036"/>
+							<input type="radio" name="color" title="ice" style="background-color:#A2BDC8"/>
+							<input type="radio" name="color" title="turq" style="background-color:#3B9E93"/>
+							<input type="radio" name="color" title="green" style="background-color:#093"/>
+							<input type="radio" name="color" title="gold" style="background-color:#FFB94F"/>
+							<input type="radio" name="color" title="orange" style="background-color:#930"/>
+							<input type="radio" name="color" title="brown" style="background-color:#785817"/>
+							<input type="radio" name="color" title="black" style="background-color:#000"/>
+							<input type="radio" name="color" title="grey" style="background-color:#999"/>
+						</div>
+						<div style="text-align:right;"><span class="asterisk">*</span><span class="label red">{beta}</span></div>
 					</div>
 				</div>
 			</div>

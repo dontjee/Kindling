@@ -5,6 +5,9 @@
 	"off":{
 		"message": "Off"
 	},
+	"beta":{
+		"message": "Beta"
+	},
 	"notificationsTitle":{
 		"message": "Notifications"
 	},
@@ -53,11 +56,14 @@
 	"soundAndEmojiMenus":{
 		"message": "Emoji and sound menus"
 	},
-	"faviconCounter":{
-		"message": "Display unread message count in tab icon"
+	"useDifferentTheme":{
+		"message": "Use an alternate color scheme"
 	},
 	"showAvatarsInChat":{
 		"message": "Display avatars in chat"
+	},
+	"useLargeAvatars":{
+		"message": "Use large avatars"
 	},
 	"colorNames":{
 		"message": "Color usernames"

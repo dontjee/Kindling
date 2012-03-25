@@ -2,37 +2,31 @@ kindling.module(function () {
 	'use strict';
 
 	var OPTIONS = [
-			'enterRoom',
-			'leaveRoom',
-			'timeStamps',
-			'notifications',
-			'highlightName',
-			'colorNames',
-			'showAvatarsInNotifications',
-			'disableNotificationsWhenInFocus',
-			'autoDismiss',
-			'filterNotifications',
-			'filterNotificationsByCustom',
-			'customFilterValue',
-			'soundAndEmojiMenus',
-			'showAvatarsInChat',
-			'faviconCounter'
-		];
+		'enterRoom',
+		'leaveRoom',
+		'timeStamps',
+		'notifications',
+		'highlightName',
+		'colorNames',
+		'showAvatarsInNotifications',
+		'disableNotificationsWhenInFocus',
+		'autoDismiss',
+		'filterNotifications',
+		'filterNotificationsByCustom',
+		'customFilterValue',
+		'soundAndEmojiMenus',
+		'showAvatarsInChat',
+		'useLargeAvatars',
+		'useDifferentTheme'
+	];
 
 	function getMessages() {
 		document.title = chrome.i18n.getMessage('options');
-		$('.cb-enable > span').html(chrome.i18n.getMessage('on'));
-		$('.cb-disable > span').html(chrome.i18n.getMessage('off'));
-
-		$('#notificationsTitle').html(chrome.i18n.getMessage('notificationsTitle'));
-		$('#messagesTitle').html(chrome.i18n.getMessage('messagesTitle'));
-		$('#otherTitle').html(chrome.i18n.getMessage('otherTitle'));
-		$('label[for="notificationTimeout"]').html(chrome.i18n.getMessage('notificationTimeout'));
-
-		var i;
-		for (i = 0; i < OPTIONS.length; i += 1) {
-			$('.description[for="' + OPTIONS[i] + '"]').html(chrome.i18n.getMessage(OPTIONS[i]));
-		}
+		var html = $(document.body).html();
+		$(html.match(new RegExp('\{([^}]*)\}', 'g'))).each(function(i, e) {
+			html = html.replace(e, chrome.i18n.getMessage(e.substring(1, e.length - 1)));
+		});
+		$(document.body).html(html);
 	}
 
 	function onOptionChanged() {
@@ -48,12 +42,8 @@ kindling.module(function () {
 			$parent.find('.cb-disable').addClass('selected');
 		}
 
-		if ($parent[0].id === 'notifications' && value !== (localStorage.notifications === 'true')) {
-			$('#disableNotificationsWhenInFocus,#filterNotifications,#showAvatarsInNotifications,#dismissDiv,#customFilterDiv').slideToggle(300);
-		} else if ($parent[0].id === 'autoDismiss' && value !== (localStorage.autoDismiss === 'true')) {
-			$('#timeoutDiv').slideToggle(200);
-		} else if ($parent[0].id === 'filterNotificationsByCustom' && value !== (localStorage.filterNotificationsByCustom === 'true')) {
-			$('#customFilterValueDiv').slideToggle(200);
+		if (value !== (localStorage[$parent[0].id] === 'true')) {
+			$($parent.data('dependents')).slideToggle(300);
 		}
 	}
 
@@ -78,6 +68,11 @@ kindling.module(function () {
 		onOptionChanged();
 	}
 
+	function onThemeColorChanged() {
+		localStorage.themeColor = $('#themeColor input:checked').attr('title');
+		onOptionChanged();
+	}
+
 	function onCustomFilterValueChanged() {
 		var customFilterValue = document.getElementById('customFilterValue');
 		saveOption(customFilterValue.id, customFilterValue.value);
@@ -99,27 +94,22 @@ kindling.module(function () {
 		for (i = 0; i < OPTIONS.length; i += 1) {
 			var savedValue = localStorage[OPTIONS[i]];
 			var checked = savedValue === undefined || (savedValue === 'true');
-			onCheckChange($(document.getElementById(OPTIONS[i])), checked);
+			var $element = $(document.getElementById(OPTIONS[i]));
+			onCheckChange($element, checked);
+
+			if (!checked)
+				$($element.data('dependents')).hide();
 		}
+
+		$('#themeColor input[title=' + localStorage.themeColor + ']').attr('checked', true);
 
 		var notificationTimeoutSlider = document.getElementById('notificationTimeout');
 		notificationTimeoutSlider.value = localStorage.notificationTimeout;
 		onNotificationTimeoutChanged();
-
 		var customFilterValue = document.getElementById('customFilterValue');
 		if (localStorage.customFilterValue) {
 			customFilterValue.value = localStorage.customFilterValue;
 			onCustomFilterValueChanged();
-		}
-
-		if (localStorage.notifications === 'false') {
-		    $('#disableNotificationsWhenInFocus,#filterNotifications,#showAvatarsInNotifications,#dismissDiv,#customFilterDiv').hide();
-		}
-		if (localStorage.autoDismiss === 'false') {
-			$('#timeoutDiv').hide();
-		}
-		if( localStorage.filterNotificationsByCustom === 'false') {
-			$('#customFilterValueDiv').hide();
 		}
 	}
 
@@ -137,6 +127,8 @@ kindling.module(function () {
 
 			$('#notificationTimeout').change(onNotificationTimeoutChanged);
 			$('#customFilterValue').change(onCustomFilterValueChanged);
+
+			$('#themeColor').change(onThemeColorChanged);
 
 			initOptions();
 

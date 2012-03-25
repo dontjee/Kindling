@@ -1,6 +1,6 @@
 {
 	"name": "Kindling for Campfire",
-	"version": "3.0.2",
+	"version": "3.2.0",
 	"default_locale": "en_US",
 	"description": "__MSG_description__",
 	"background_page": "background.html",
@@ -31,13 +31,13 @@
 			"scripts/kindling.common.js",
 			"scripts/jquery.easing.js",
 			"scripts/jquery.coda-slider.js",
+			"scripts/kindling.theme.js",
 			"scripts/kindling.customsounds.js",
 			"scripts/kindling.emoji.js",
 			"scripts/kindling.sounds.js",
 			"scripts/kindling.highlight.js",
 			"scripts/kindling.messagefilter.js",
 			"scripts/kindling.avatars.js",
-			"scripts/kindling.favicon.js",
 			"scripts/kindling.colorednames.js",
 			"scripts/kindling.notificationpublisher.js",
 			"scripts/kindling.contentscript.js"
