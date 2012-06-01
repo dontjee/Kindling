@@ -84,10 +84,10 @@ kindling.module(function () {
 		}
 	}
 
+	var newMessageTimer;
 	function rehideBuildbotMessages() {
-		console.log('triggered the new message');
-		console.log( currentOptions );
-		showHidePublishMessages(currentOptions.buildbotPublish);
+		clearTimeout(newMessageTimer);
+		newMessageTimer = setTimeout(showHidePublishMessages, 100, currentOptions.buildbotPublish);
 	}
 
 	return {
