@@ -63,6 +63,7 @@ kindling.module(function () {
 	return {
 		init: function () {
 			initSetting('enterRoom', 'false');
+			initSetting('buildbotPublish', 'false');
 			initSetting('leaveRoom', 'false');
 			initSetting('timeStamps', 'true');
 			initSetting('filterNotifications', 'false');

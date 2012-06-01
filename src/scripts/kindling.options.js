@@ -3,6 +3,7 @@ kindling.module(function () {
 
 	var OPTIONS = [
 		'enterRoom',
+                'buildbotPublish',
 		'leaveRoom',
 		'timeStamps',
 		'notifications',

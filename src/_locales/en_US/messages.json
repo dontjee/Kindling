@@ -41,6 +41,9 @@
 	"enterRoom":{
 		"message": "Enter room messages"
 	},
+	"buildbotPublish":{
+		"message": "Buildbot publish messages"
+	},
 	"leaveRoom":{
 		"message": "Leave room messages"
 	},
