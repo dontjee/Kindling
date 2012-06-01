@@ -22,6 +22,10 @@ var kindling = kindling || (function (domReady) {
 			var pageHeight = Math.max(document.documentElement.offsetHeight, document.body.scrollHeight);
 			var targetY = pageHeight + window.innerHeight + 100;
 			window.scrollTo(0, targetY);
+			var buildbotDiv = $('.buildbotTableWrapper');
+			if( buildbotDiv.length){
+				buildbotDiv.scrollTop(buildbotDiv[0].scrollHeight);
+			}
 		},
 
 		module: function (m) {
