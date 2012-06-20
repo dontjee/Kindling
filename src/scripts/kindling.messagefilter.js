@@ -58,7 +58,7 @@ kindling.module(function () {
 		var $chat = $('#chat-wrapper');
 		var $rows = $chat.find('tr.user_624007');
 
-		var selector = 'div.body:contains("TeamBuild:"), div.body:contains("-CreatePackage_")'
+		var selector = 'div.body:contains("TeamBuild:"), div.body:contains("of package")'
 		var $buildbotPublishMessages = $rows.find(selector).parents('tr.user_624007');
 
 		if(value === 'false') {
