@@ -33,7 +33,7 @@ kindling.module(function () {
 		'YeahBoi!' : '/customplay yeahboi',
 		'Vuvuzela': '/play vuvuzela',
 		'Yeeeaaah!': '/play yeah',
-		'Yodel': 'yodel'
+		'Yodel': '/play yodel'
 	};
 
 	var MENU_ID = 'soundButton-wrapper';
