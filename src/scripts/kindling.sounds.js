@@ -2,30 +2,38 @@ kindling.module(function () {
 	'use strict';
 
 	var SOUNDS = {
+		'56k': '/play 56k',
 		'Bueller?': '/play bueller',
 		'Crickets chirping': '/play crickets',
 		'Cross fingers': '/customplay crossfingers',
+		'Danger zone': '/play dangerzone',
 		'Do it live!': '/play live',
 		'Do it stage!': '/customplay stage',
 		'Drumroll': '/customplay drumroll',
 		'Drama': '/play drama',
 		'Go Cloud Team!': '/customplay gocloudteam',
 		'Great job': '/play greatjob',
+		'Horn': '/play horn',
+		'Kenny Loggins': '/play loggins',
 		'Nice Catch': '/customplay nicecatch',
+		'Noooo': '/play noooo',
 		'Nyan cat': '/play nyan',
 		'Oh my': '/play ohmy',
 		'OMG': '/customplay ohmygod',
 		'Oh yeah': '/play ohyeah',
 		'Push it': '/play pushit',
 		'Rimshot': '/play rimshot',
+		'Saxaphone': '/play sax',
 		'Sad trombone': '/play trombone',
 		'Secret area': '/play secret',
 		'Ship It Good!': '/customplay shipitgood',
 		'Ta-da!' : '/play tada',
+		'The horror': '/play horror',
 		'The More You Know': '/play tmyk',
 		'YeahBoi!' : '/customplay yeahboi',
+		'Vuvuzela': '/play vuvuzela',
 		'Yeeeaaah!': '/play yeah',
-		'Vuvuzela': '/play vuvuzela'
+		'Yodel': 'yodel'
 	};
 
 	var MENU_ID = 'soundButton-wrapper';

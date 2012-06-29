@@ -16,6 +16,7 @@ kindling.module(function () {
 		'filterNotificationsByCustom',
 		'customFilterValue',
 		'soundAndEmojiMenus',
+		'minimalInterface',
 		'showAvatarsInChat',
 		'useLargeAvatars',
 		'useDifferentTheme'
@@ -118,6 +119,8 @@ kindling.module(function () {
 		init: function () {
 			getMessages();
 
+			$('#coda-slider').codaSlider();
+
 			$('.cb-enable').click(function () {
 				onCheckClick(this, true);
 			});
@@ -132,8 +135,6 @@ kindling.module(function () {
 			$('#themeColor').change(onThemeColorChanged);
 
 			initOptions();
-
-			$('#coda-slider').codaSlider();
 		}
 	};
 }());
