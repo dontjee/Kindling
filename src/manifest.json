@@ -38,6 +38,7 @@
 			"scripts/kindling.highlight.js",
 			"scripts/kindling.messagefilter.js",
 			"scripts/kindling.avatars.js",
+			"scripts/kindling.colorednames.js",
 			"scripts/kindling.notificationpublisher.js",
 			"scripts/kindling.contentscript.js",
 			"scripts/kindling.minimalinterface.js"
