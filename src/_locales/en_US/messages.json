@@ -59,6 +59,9 @@
 	"soundAndEmojiMenus":{
 		"message": "Emoji and sound menus"
 	},
+	"minimalInterface":{
+		"message": "Minimal interface"
+	},
 	"useDifferentTheme":{
 		"message": "Use an alternate color scheme"
 	},
@@ -75,7 +78,7 @@
 		"message": "Click to configure Kindling..."
 	},
 	"description":{
-		"message": "Kindling adds desktop notifications, name highlighting, and message filtering to 37signals Campfire."
+		"message": "Adds useful features and customizations to 37signals Campfire."
 	},
 	"seconds":{
 		"message": "sec"
